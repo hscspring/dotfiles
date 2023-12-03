@@ -1,0 +1,10 @@
+{
+	"optOut": false,
+	"lastUpdateCheck": 1595833884017,
+	"update": {
+		"latest": "3.10.1",
+		"current": "0.17.0",
+		"type": "major",
+		"name": "ava"
+	}
+}

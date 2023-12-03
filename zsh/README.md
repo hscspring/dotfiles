@@ -1,29 +1,33 @@
-oh-my-zsh
+fd
 
-z, autojump
-
-fzf, fd, mcfly, skim, fgr
+fzf, skim, mcfly, fgr
 
 bat
 
 exa
 
-tere
-
 tldr, navi
 
 ag,rg
+
+zenith, btm, htop
+
+erdtree
+
+
+
+rsre(like mv)
+
+hapless (nohup)
+
+tere (cd+ls)
+
+oh-my-zsh
+
+z, autojump
 
 jsontools 
 
 vi-mode
 
 zsh-proxy
-
-zenith, btm, htop
-
-erdtree
-
-rsre(like mv)
-
-hapless (nohup)
