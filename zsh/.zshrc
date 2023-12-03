@@ -96,7 +96,6 @@ export PATH="/usr/local/opt/gdal2/bin:$PATH"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # alias
-# SouChe
 alias vim='nvim'
 alias sc='echo "eas oss | mus tssh"'
 alias eas='eascmdmac64'
