@@ -1,14 +1,27 @@
 # dotfiles
 
+
+
 ## 软件安装管理
 
 ```bash
+# For M1/M2
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# For X86_64
+softwareupdate --install-rosetta
+arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+mv /usr/local/bin/brew /usr/local/bin/ibrew
+alias ibrew="arch -x86_64 /usr/local/bin/ibrew"
 
+
+brew --prefix [package]
+brew info [package]
 brew install mas
 ```
 
 [mas-cli/mas: :package: Mac App Store command line interface](https://github.com/mas-cli/mas)
+
+[macos - installing python@3.7 MacBook Air m1 problem - Stack Overflow](https://stackoverflow.com/questions/70315418/installing-python3-7-macbook-air-m1-problem)
 
 ## Shell/Terminal
 
@@ -74,10 +87,27 @@ brew install --cask sf-symbols
 ## 编程
 
 ```bash
-brew install python
-brew install python@3.8
+brew install autoenv
+brewx86 install python@3.8
+brew install python # default 3.11 now
 # Rust
 # lisp
 # Node
+```
+
+关于Python
+
+```bash
+##### 系统自带 #####
+/Applications/Xcode.app/Contents/Developer/usr/bin/python3
+# 等价于
+/usr/bin/python3
+# 包地址
+/usr/bin/python3 -m site
+
+##### X86 #####
+python3.8
+##### M1/2 #####
+python3.11
 ```
 
