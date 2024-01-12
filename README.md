@@ -88,7 +88,7 @@ brew install --cask sf-symbols
 
 ```bash
 brew install autoenv
-brewx86 install python@3.8
+ibrew install python@3.8
 brew install python # default 3.11 now
 # Rust
 # lisp
