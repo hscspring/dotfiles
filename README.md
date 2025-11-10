@@ -79,7 +79,7 @@ brew install neovim
 
 `ls`: 
 
-- [ogham/exa: A modern replacement for ‘ls’.](https://github.com/ogham/exa)
+- ☆[ogham/exa: A modern replacement for ‘ls’.](https://github.com/ogham/exa)
 - [chaqchase/lla: blazing fast `ls` replacement with superpowers](https://github.com/chaqchase/lla)
 
 `rm`: [ismoilovdevml/rmx: Rewritten alternative rm in rust](https://github.com/ismoilovdevml/rmx)
@@ -90,11 +90,11 @@ brew install neovim
 
 `tree`: [solidiquis/erdtree](https://github.com/solidiquis/erdtree)
 
-`tar`:[sstadick/crabz: Like pigz, but rust](https://github.com/sstadick/crabz)
+`tar`: [sstadick/crabz: Like pigz, but rust](https://github.com/sstadick/crabz)
 
 `top`: 
 
-- [htop-dev/htop: htop - an interactive process viewer](https://github.com/htop-dev/htop)
+- ☆[htop-dev/htop: htop - an interactive process viewer](https://github.com/htop-dev/htop)
 - [ClementTsang/bottom: Yet another cross-platform graphical process/system monitor.](https://github.com/ClementTsang/bottom)
 
 `find`: 
@@ -104,7 +104,10 @@ brew install neovim
 
 fuzzy `find`: [junegunn/fzf: :cherry_blossom: A command-line fuzzy finder](https://github.com/junegunn/fzf)
 
-search: [BurntSushi/ripgrep: ripgrep recursively searches directories for a regex pattern while respecting your gitignore](https://github.com/BurntSushi/ripgrep)
+search: 
+
+- ☆[BurntSushi/ripgrep: ripgrep recursively searches directories for a regex pattern while respecting your gitignore](https://github.com/BurntSushi/ripgrep)
+- [ggreer/the_silver_searcher: A code-searching tool similar to ack, but faster.](https://github.com/ggreer/the_silver_searcher)
 
 prompt: [starship/starship: ☄🌌️ The minimal, blazing-fast, and infinitely customizable prompt for any shell!](https://github.com/starship/starship)
 
@@ -117,13 +120,13 @@ benchmark: [sharkdp/hyperfine: A command-line benchmarking tool](https://github.
 
 file manager：
 
+- ☆[sxyazi/yazi: 💥 Blazing fast terminal file manager written in Rust, based on async I/O.](https://github.com/sxyazi/yazi)
 - [mgunyho/tere: Terminal file explorer](https://github.com/mgunyho/tere)
-- [sxyazi/yazi: 💥 Blazing fast terminal file manager written in Rust, based on async I/O.](https://github.com/sxyazi/yazi)
 - [kyoheiu/felix: tui file manager with vim-like key mapping](https://github.com/kyoheiu/felix)
 
 multiplexers:
 
-- [zellij-org/zellij: A terminal workspace with batteries included](https://github.com/zellij-org/zellij)
+- ☆[zellij-org/zellij: A terminal workspace with batteries included](https://github.com/zellij-org/zellij)
 - [tmux/tmux: tmux source code](https://github.com/tmux/tmux)
 - [Gaurav-Gosain/tuios: Terminal UI OS (Terminal Multiplexer)](https://github.com/Gaurav-Gosain/tuios)
 
