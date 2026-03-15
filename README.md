@@ -82,6 +82,8 @@ brew install neovim
 - ☆[ogham/exa: A modern replacement for ‘ls’.](https://github.com/ogham/exa)
 - [chaqchase/lla: blazing fast `ls` replacement with superpowers](https://github.com/chaqchase/lla)
 
+`cp`: [11happy/cpx: cp reimagined](https://github.com/11happy/cpx)
+
 `rm`: [ismoilovdevml/rmx: Rewritten alternative rm in rust](https://github.com/ismoilovdevml/rmx)
 
 `cat`: [sharkdp/bat: A cat(1) clone with wings.](https://github.com/sharkdp/bat)
