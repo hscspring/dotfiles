@@ -14,6 +14,9 @@ else
 fi
 unset __conda_setup
 
+# Ensure conda python/pip take priority over homebrew
+export PATH="$HOME/miniconda3/bin:$PATH"
+
 alias ca='conda activate'
 alias cc='conda create'
 
