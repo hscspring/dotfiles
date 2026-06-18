@@ -97,6 +97,21 @@ command -v optimus >/dev/null 2>&1 && alias mus='optimus'
 alias sc='echo "eas oss | mus tssh"'
 
 # ==============================
+# GPU / Training
+# ==============================
+
+command -v nvitop >/dev/null 2>&1 && alias gpu='nvitop'
+alias smi='nvidia-smi'
+alias gpumem='nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader,nounits'
+alias gkill='nvidia-smi --query-compute-apps=pid --format=csv,noheader | xargs -r kill -9'
+
+# ==============================
+# Markdown preview
+# ==============================
+
+command -v glow >/dev/null 2>&1 && alias md='glow'
+
+# ==============================
 # Tmux
 # ==============================
 
