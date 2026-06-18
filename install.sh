@@ -115,7 +115,7 @@ install_macos() {
     local pkgs=(
         fzf ripgrep fd
         eza bat zoxide
-        tmux htop tealdeer
+        tmux htop
     )
 
     info "brew install: ${pkgs[*]}"
