@@ -2,8 +2,10 @@
 # ZSH bootstrap (unified: macOS + Linux)
 # =========================
 
-export TERM=${TERM:-xterm-256color}
-[[ "$TERM" == (dumb|emacs|) ]] && export TERM=xterm-256color
+# Fall back to xterm-256color if the terminal type is unknown on this machine
+if ! infocmp "$TERM" &>/dev/null 2>&1; then
+  export TERM=xterm-256color
+fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
