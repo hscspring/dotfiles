@@ -12,13 +12,11 @@ local plugins = {
 
   -- ===== Theme =====
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "ishan9299/nvim-solarized-lua",
     priority = 1000,
-    opts = { flavour = "mocha" },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin")
+    config = function()
+      vim.o.background = "light"
+      vim.cmd.colorscheme("solarized")
     end,
   },
 
@@ -28,7 +26,7 @@ local plugins = {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        theme = "catppuccin",
+        theme = "solarized_light",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         globalstatus = true,
