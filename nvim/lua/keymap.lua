@@ -55,6 +55,7 @@ end, { desc = "Format" })
 -- ===== Shell =====
 map("n", "<leader>sh", ":!")
 map("n", "<leader>py", "<cmd>!python3 %<cr>", { desc = "Run python" })
+map("n", "<leader>md", "<cmd>!glow %<cr>", { desc = "Preview markdown" })
 
 -- ===== Lazy =====
 map("n", "<leader>i", "<cmd>Lazy install<cr>", { desc = "Install plugins" })
