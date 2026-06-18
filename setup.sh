@@ -35,10 +35,15 @@ mkdir -p "$HOME/.zsh"
 for f in alias dev env git path proxy python; do
     link "$DOTFILES/zsh/${f}.zsh" "$HOME/.zsh/${f}.zsh"
 done
-# local.zsh: create from example if missing (never overwrite)
+# local.zsh: create from platform-specific example if missing (never overwrite)
 if [ ! -f "$HOME/.zsh/local.zsh" ]; then
-    cp "$DOTFILES/zsh/local.zsh.example" "$HOME/.zsh/local.zsh"
-    echo -e "${GREEN}[NEW]${NC}  ~/.zsh/local.zsh (from example)"
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        cp "$DOTFILES/zsh/local.zsh.example.mac" "$HOME/.zsh/local.zsh"
+        echo -e "${GREEN}[NEW]${NC}  ~/.zsh/local.zsh (from mac example)"
+    else
+        cp "$DOTFILES/zsh/local.zsh.example.linux" "$HOME/.zsh/local.zsh"
+        echo -e "${GREEN}[NEW]${NC}  ~/.zsh/local.zsh (from linux example)"
+    fi
 fi
 
 # --- Vim ---

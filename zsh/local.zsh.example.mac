@@ -1,0 +1,8 @@
+# Machine-local overrides — macOS
+# Copy to ~/.zsh/local.zsh and customize. This file is NOT tracked by git.
+
+# Homebrew mirror (optional, for China mainland)
+# export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+
+# Local dev dirs
+# dev=~/Developer

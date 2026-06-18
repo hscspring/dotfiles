@@ -1,0 +1,12 @@
+# Machine-local overrides — Linux server
+# Copy to ~/.zsh/local.zsh and customize. This file is NOT tracked by git.
+
+# Auto cd to working directory on new shell
+[[ "$PWD" == "$HOME" ]] && cd /mnt/local
+
+# Shortcut to shared data
+ds=/mnt/gv0/sean
+
+# Encrypted vault
+alias secret-open="gocryptfs /mnt/local/sean/yam_raw /mnt/local/sean/yam_mount"
+alias secret-close="fusermount -u /mnt/local/sean/yam_mount"

@@ -1,7 +1,0 @@
-# Machine-local overrides (not synced to dotfiles repo).
-
-# Auto cd to working directory on new shell
-[[ "$PWD" == "$HOME" ]] && cd /mnt/local
-
-# Shortcut to shared data
-ds=/mnt/gv0/sean
