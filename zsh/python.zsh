@@ -1,30 +1,28 @@
 # ==============================
-# conda initialize
+# conda lazy load — only init when first used (~0.9s saved per shell)
 # ==============================
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  CONDA_ROOT="$HOME/miniconda3"
+  _CONDA_ROOT="$HOME/miniconda3"
 else
-  CONDA_ROOT="${CONDA_ROOT:-/mnt/local/envs/miniconda3}"
+  _CONDA_ROOT="${CONDA_ROOT:-/mnt/local/envs/miniconda3}"
 fi
 
-if [ -x "$CONDA_ROOT/bin/conda" ]; then
-  __conda_setup="$("$CONDA_ROOT/bin/conda" 'shell.zsh' 'hook' 2>/dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "$CONDA_ROOT/etc/profile.d/conda.sh" ]; then
-      . "$CONDA_ROOT/etc/profile.d/conda.sh"
-    else
-      export PATH="$CONDA_ROOT/bin:$PATH"
-    fi
-  fi
-  unset __conda_setup
-  export PATH="$CONDA_ROOT/bin:$PATH"
-  alias ca='conda activate'
-  alias cc='conda create'
+# Put conda on PATH immediately (so `python` resolves), but defer the heavy hook
+if [ -x "$_CONDA_ROOT/bin/conda" ]; then
+  export PATH="$_CONDA_ROOT/bin:$PATH"
 fi
-unset CONDA_ROOT
+
+_conda_init() {
+  if [ -z "$_CONDA_INITIALIZED" ] && [ -x "$_CONDA_ROOT/bin/conda" ]; then
+    eval "$("$_CONDA_ROOT/bin/conda" 'shell.zsh' 'hook' 2>/dev/null)"
+    _CONDA_INITIALIZED=1
+  fi
+}
+
+conda()  { _conda_init; command conda "$@"; }
+ca()     { _conda_init; conda activate "$@"; }
+cc()     { _conda_init; conda create "$@"; }
 
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 
