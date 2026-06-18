@@ -1,0 +1,5 @@
+{
+  "conform.nvim": { "branch": "master", "commit": "75e7c5c7eb5fbd53f8b12dc420b31ec70770b231" },
+  "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
+  "tabnine-nvim": { "branch": "master", "commit": "eb914c268228e5a04652fbcc3aff93a5bdb996d2" }
+}
