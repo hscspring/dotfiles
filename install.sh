@@ -110,16 +110,25 @@ install_macos() {
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
+    # Keep the list light — only packages with small bottle footprints.
+    # Heavy-dep packages (llvm/rust/ghc build chains) are excluded.
     local pkgs=(
-        fd eza bat zoxide starship
-        dust bottom tealdeer
-        fzf ripgrep git-delta
-        yazi lazygit tmux htop
-        glow
+        fzf ripgrep fd
+        eza bat zoxide
+        tmux htop tealdeer
     )
 
     info "brew install: ${pkgs[*]}"
     brew install "${pkgs[@]}"
+
+    # starship: use official installer (no brew deps)
+    if ! has starship; then
+        info "Installing starship ..."
+        curl -sS https://starship.rs/install.sh | sh -s -- -y
+        ok "starship installed"
+    else
+        warn "starship already installed"
+    fi
 
     ok "All macOS packages installed"
 }
