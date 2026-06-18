@@ -121,25 +121,6 @@ install_macos() {
     info "brew install: ${pkgs[*]}"
     brew install "${pkgs[@]}"
 
-    # neovim: use pre-built binary to avoid massive brew dependency chain
-    if ! has nvim; then
-        info "Installing neovim (pre-built) ..."
-        local nvim_tag
-        nvim_tag=$(gh_latest_tag "neovim/neovim")
-        curl -fsSL -o /tmp/nvim-macos-arm64.tar.gz \
-            "https://github.com/neovim/neovim/releases/download/${nvim_tag}/nvim-macos-arm64.tar.gz"
-        xattr -c /tmp/nvim-macos-arm64.tar.gz 2>/dev/null
-        tar -xzf /tmp/nvim-macos-arm64.tar.gz -C /tmp
-        rm -rf "$HOME/.local/nvim"
-        mv /tmp/nvim-macos-arm64 "$HOME/.local/nvim"
-        mkdir -p "$HOME/.local/bin"
-        ln -sf "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
-        rm -f /tmp/nvim-macos-arm64.tar.gz
-        ok "neovim installed ($nvim_tag)"
-    else
-        warn "nvim already installed ($(command -v nvim))"
-    fi
-
     ok "All macOS packages installed"
 }
 
