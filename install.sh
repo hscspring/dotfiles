@@ -112,9 +112,10 @@ install_macos() {
 
     local pkgs=(
         fd eza bat zoxide starship
-        dust bottom tealdeer hyperfine
+        dust bottom tealdeer
         fzf ripgrep git-delta
         yazi lazygit tmux htop
+        glow neovim
     )
 
     info "brew install: ${pkgs[*]}"
