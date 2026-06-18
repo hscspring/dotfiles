@@ -11,7 +11,7 @@ export RUSTUP_DIST_SERVER=https://mirrors.aliyun.com/rustup
 
 export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo'
 
-alias pc='proxychains4'
+command -v proxychains4 >/dev/null 2>&1 && alias pc='proxychains4'
 
 proxy_status() {
   if lsof -i:7890 >/dev/null 2>&1; then
@@ -25,5 +25,7 @@ proxychains-prefix() {
   LBUFFER="pc $LBUFFER"
 }
 
-zle -N proxychains-prefix
-bindkey "^[p" proxychains-prefix
+if [[ -o interactive ]] && [[ -o zle ]]; then
+  zle -N proxychains-prefix
+  bindkey "^[p" proxychains-prefix
+fi
