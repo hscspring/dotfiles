@@ -1,57 +1,61 @@
- 
--- clear hights and matches Ctrl+b
--- noh means nohlsearch
-vim.cmd("noremap <C-b> :noh<cr>:call clearmatches()<cr>")
-vim.cmd("noremap ; :")
+local map = vim.keymap.set
 
+-- ===== General =====
+map("n", ";", ":")
+map("n", "<leader>s", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
+map("n", "<C-b>", "<cmd>noh<cr>", { desc = "Clear highlights" })
 
-function map(mode, shortcut, cmd)
-	vim.api.nvim_set_keymap(mode, shortcut, cmd, {noremap = true, silent = true	})
-end
+-- Clipboard
+map("v", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 
+-- ===== Window navigation =====
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
-function nmap(shortcut, cmd)
-	map("n", shortcut, cmd)
-end
+-- Split
+map("n", "vv", "<C-w>v", { desc = "Vertical split" })
+map("n", "ss", "<C-w>s", { desc = "Horizontal split" })
 
+-- Resize
+map("n", "<C-Up>", "<cmd>resize +2<cr>")
+map("n", "<C-Down>", "<cmd>resize -2<cr>")
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>")
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>")
 
-function imap(shortcut, cmd)
-	map("i", shortcut, cmd)
-end
+-- ===== Telescope =====
+map("n", "<leader>l", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+map("n", "<leader>rg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
+map("n", "<leader>lb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
+map("n", "<leader>lm", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files" })
+map("n", "<leader>ll", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer lines" })
+map("n", "<leader>lf", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Symbols" })
+map("n", "<leader>ld", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics" })
 
+-- ===== Git =====
+map("n", "<leader>g", "<cmd>Git<cr>", { desc = "Git status" })
+map("n", "<leader>G", "<cmd>Gdiffsplit<cr>", { desc = "Git diff" })
 
-function vmap(shortcut, cmd)
-	map("v", shortcut, cmd)
-end
+-- ===== LSP (set in lsp.lua on_attach, duplicated here for which-key) =====
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+map("n", "gr", vim.lsp.buf.references, { desc = "References" })
+map("n", "K", vim.lsp.buf.hover, { desc = "Hover doc" })
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
+map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 
+-- ===== Formatter =====
+map("n", "<leader>f", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Format" })
 
-function cmap(shortcut, cmd)
-	map("c", shortcut, cmd)
-end
+-- ===== Shell =====
+map("n", "<leader>sh", ":!")
+map("n", "<leader>py", "<cmd>!python3 %<cr>", { desc = "Run python" })
 
-
-
--- sane regexes
--- after / actually /\\v, will use "very magic" mode
-nmap("/", "/\\v")
-vmap("/", "/\\v")
-
-
--- Easy window split
-nmap("vv", "<C-w>v")
-nmap("ss", "<C-w>s")
-vim.o.splitbelow = true -- when splitting horizontally, move coursor to lower pane
-vim.o.splitright = true -- when splitting vertically, mnove coursor to right pane
-
-
--- Easy buffer navigation
-nmap("<C-h>", "<C-w>h")
-nmap("<C-j>", "<C-w>j")
-nmap("<C-k>", "<C-w>k")
-nmap("<C-l>", "<C-w>l")
-
-
--- Programing
-nmap("<leader>sh", ":!")
-nmap("<leader>py", ":!python")
-nmap("<leader>pt", ":!python -m pytest")
+-- ===== Lazy =====
+map("n", "<leader>i", "<cmd>Lazy install<cr>", { desc = "Install plugins" })
+map("n", "<leader>u", "<cmd>Lazy update<cr>", { desc = "Update plugins" })

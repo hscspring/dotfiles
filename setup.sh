@@ -52,6 +52,16 @@ link "$DOTFILES/vim/.vimrc.bundle" "$HOME/.vimrc.bundle"
 mkdir -p "$HOME/.vim/autoload"
 link "$DOTFILES/vim/autoload/plug.vim" "$HOME/.vim/autoload/plug.vim"
 
+# --- Neovim ---
+mkdir -p "$HOME/.config/nvim/lua/config"
+link "$DOTFILES/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+for f in setting keymap plugin; do
+    link "$DOTFILES/nvim/lua/${f}.lua" "$HOME/.config/nvim/lua/${f}.lua"
+done
+for f in conform telescope treesitter lsp cmp gitsigns; do
+    link "$DOTFILES/nvim/lua/config/${f}.lua" "$HOME/.config/nvim/lua/config/${f}.lua"
+done
+
 # --- tmux ---
 link "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
 
