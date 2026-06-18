@@ -47,10 +47,10 @@ if [ ! -f "$HOME/.zsh/local.zsh" ]; then
 fi
 
 # --- Vim ---
-link "$DOTFILES/nvim/.vimrc" "$HOME/.vimrc"
-link "$DOTFILES/nvim/.vimrc.bundle" "$HOME/.vimrc.bundle"
+link "$DOTFILES/vim/.vimrc" "$HOME/.vimrc"
+link "$DOTFILES/vim/.vimrc.bundle" "$HOME/.vimrc.bundle"
 mkdir -p "$HOME/.vim/autoload"
-link "$DOTFILES/nvim/autoload/plug.vim" "$HOME/.vim/autoload/plug.vim"
+link "$DOTFILES/vim/autoload/plug.vim" "$HOME/.vim/autoload/plug.vim"
 
 # --- tmux ---
 link "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
