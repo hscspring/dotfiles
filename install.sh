@@ -105,31 +105,45 @@ install_gh_binary() {
 # macOS (Homebrew)
 # ============================================================
 install_macos() {
+    # --- brew: only non-Rust tools ---
     if ! has brew; then
         info "Installing Homebrew ..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
-
-    # Map: brew-pkg-name → binary-name (for tools where they differ)
-    local -A bin_map=([fd]=fd [ripgrep]=rg [bat]=bat [eza]=eza [zoxide]=zoxide)
-    local pkgs=(fzf ripgrep fd eza bat zoxide tmux htop)
-    local to_install=()
-    for p in "${pkgs[@]}"; do
-        local bin="${bin_map[$p]:-$p}"
-        if has "$bin"; then
-            warn "$p already installed ($bin found)"
+    local brew_pkgs=(fzf tmux htop)
+    for p in "${brew_pkgs[@]}"; do
+        if has "$p"; then
+            warn "$p already installed"
         else
-            to_install+=("$p")
+            info "brew install $p"
+            brew install "$p"
         fi
     done
-    if [ ${#to_install[@]} -gt 0 ]; then
-        info "brew install: ${to_install[*]}"
-        brew install "${to_install[@]}"
-    else
-        ok "All brew packages already installed"
+
+    # --- cargo: Rust-based tools ---
+    if ! has cargo; then
+        fail "cargo not found — install Rust first: https://rustup.rs"
+        return 1
+    fi
+    local -A cargo_map=(
+        [eza]=eza [bat]=bat [fd-find]=fd
+        [ripgrep]=rg [zoxide]=zoxide
+        [git-delta]=delta [du-dust]=dust
+    )
+    local cargo_install=()
+    for crate bin in "${(@kv)cargo_map}"; do
+        if has "$bin"; then
+            warn "$crate already installed ($bin found)"
+        else
+            cargo_install+=("$crate")
+        fi
+    done
+    if [ ${#cargo_install[@]} -gt 0 ]; then
+        info "cargo install: ${cargo_install[*]}"
+        cargo install "${cargo_install[@]}"
     fi
 
-    # starship: use official installer (no brew deps)
+    # --- starship: official installer ---
     if ! has starship; then
         info "Installing starship ..."
         curl -sS https://starship.rs/install.sh | sh -s -- -y
