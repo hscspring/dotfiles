@@ -110,11 +110,14 @@ install_macos() {
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
+    # Map: brew-pkg-name → binary-name (for tools where they differ)
+    local -A bin_map=([fd]=fd [ripgrep]=rg [bat]=bat [eza]=eza [zoxide]=zoxide)
     local pkgs=(fzf ripgrep fd eza bat zoxide tmux htop)
     local to_install=()
     for p in "${pkgs[@]}"; do
-        if brew list "$p" &>/dev/null; then
-            warn "$p already installed (brew)"
+        local bin="${bin_map[$p]:-$p}"
+        if has "$bin"; then
+            warn "$p already installed ($bin found)"
         else
             to_install+=("$p")
         fi
