@@ -110,16 +110,21 @@ install_macos() {
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    # Keep the list light — only packages with small bottle footprints.
-    # Heavy-dep packages (llvm/rust/ghc build chains) are excluded.
-    local pkgs=(
-        fzf ripgrep fd
-        eza bat zoxide
-        tmux htop
-    )
-
-    info "brew install: ${pkgs[*]}"
-    brew install "${pkgs[@]}"
+    local pkgs=(fzf ripgrep fd eza bat zoxide tmux htop)
+    local to_install=()
+    for p in "${pkgs[@]}"; do
+        if brew list "$p" &>/dev/null; then
+            warn "$p already installed (brew)"
+        else
+            to_install+=("$p")
+        fi
+    done
+    if [ ${#to_install[@]} -gt 0 ]; then
+        info "brew install: ${to_install[*]}"
+        brew install "${to_install[@]}"
+    else
+        ok "All brew packages already installed"
+    fi
 
     # starship: use official installer (no brew deps)
     if ! has starship; then
