@@ -14,7 +14,7 @@ export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo'
 command -v proxychains4 >/dev/null 2>&1 && alias pc='proxychains4'
 
 proxy_status() {
-  if lsof -i:7890 >/dev/null 2>&1; then
+  if nc -z 127.0.0.1 7890 2>/dev/null; then
     echo "proxy: ON"
   else
     echo "proxy: OFF"

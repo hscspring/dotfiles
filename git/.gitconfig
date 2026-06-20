@@ -39,3 +39,6 @@
 
 [include]
 	path = ~/.gitconfig.local
+[user]
+	name = hscspring
+	email = haoshaochun@gmail.com
