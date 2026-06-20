@@ -7,6 +7,9 @@ if ! infocmp "$TERM" &>/dev/null 2>&1; then
   export TERM=xterm-256color
 fi
 
+# Allow git to traverse across filesystem boundaries (suppresses errors in /mnt)
+export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # starship handles the prompt; fall back to refined if starship isn't installed
@@ -61,3 +64,7 @@ done
 
 # Deduplicate PATH
 typeset -U PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
