@@ -4,6 +4,7 @@ local map = vim.keymap.set
 map("n", ";", ":")
 map("n", "<leader>s", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
 map("n", "<C-b>", "<cmd>noh<cr>", { desc = "Clear highlights" })
+map("n", "<leader>sn", "<cmd>set number! relativenumber!<cr>", { desc = "Toggle line numbers" })
 
 -- Clipboard
 map("v", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
