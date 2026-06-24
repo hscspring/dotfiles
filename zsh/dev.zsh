@@ -84,6 +84,21 @@ if command -v tere >/dev/null 2>&1; then
 fi
 
 # ==============================
+# AWS MFA — get temp session token
+# ==============================
+
+awsmfa() {
+    local script
+    for d in "$HOME/dotfiles" "$HOME/.local/dotfiles" /mnt/local/sean/dotfiles; do
+        [ -x "$d/bin/aws-mfa" ] && script="$d/bin/aws-mfa" && break
+    done
+    if [ -z "${script:-}" ]; then
+        echo "aws-mfa script not found"; return 1
+    fi
+    "$script" "$@" && source "$HOME/.aws/mfa-session.env"
+}
+
+# ==============================
 # tmux sessions
 # ==============================
 

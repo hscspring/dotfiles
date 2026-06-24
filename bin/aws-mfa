@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MFA_SERIAL="arn:aws:iam::464791063500:mfa/flowmac"
+DURATION="${AWS_MFA_DURATION:-43200}"
+
+# Clear any existing session so we use the base credentials
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+
+if [ $# -eq 1 ]; then
+    TOKEN_CODE="$1"
+else
+    read -rp "MFA code: " TOKEN_CODE
+fi
+
+CREDS=$(aws sts get-session-token \
+    --serial-number "$MFA_SERIAL" \
+    --token-code "$TOKEN_CODE" \
+    --duration-seconds "$DURATION" \
+    --output json)
+
+AK=$(echo "$CREDS" | python3 -c "import sys,json; print(json.load(sys.stdin)['Credentials']['AccessKeyId'])")
+SK=$(echo "$CREDS" | python3 -c "import sys,json; print(json.load(sys.stdin)['Credentials']['SecretAccessKey'])")
+ST=$(echo "$CREDS" | python3 -c "import sys,json; print(json.load(sys.stdin)['Credentials']['SessionToken'])")
+EX=$(echo "$CREDS" | python3 -c "import sys,json; print(json.load(sys.stdin)['Credentials']['Expiration'])")
+
+EXPORT_FILE="${HOME}/.aws/mfa-session.env"
+mkdir -p "$(dirname "$EXPORT_FILE")"
+cat > "$EXPORT_FILE" <<EOF
+export AWS_ACCESS_KEY_ID="${AK}"
+export AWS_SECRET_ACCESS_KEY="${SK}"
+export AWS_SESSION_TOKEN="${ST}"
+EOF
+
+echo "MFA session active until ${EX}"
+echo "Run: source ~/.aws/mfa-session.env"
