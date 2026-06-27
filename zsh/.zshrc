@@ -10,6 +10,18 @@ fi
 # Allow git to traverse across filesystem boundaries (suppresses errors in /mnt)
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
+# SSH sessions (non-mosh): bare shell, skip all personal config
+# mosh runs under mosh-server; pure SSH does not
+# Type "loadrc" in SSH to force-load all config
+if [[ -n "$SSH_CONNECTION" && -z "$FORCE_LOAD_RC" ]] && ! pstree -s $$ 2>/dev/null | grep -q mosh-server; then
+  alias loadrc='FORCE_LOAD_RC=1 exec zsh'
+  return
+fi
+
+# =========================
+# Full interactive setup (mosh / local only)
+# =========================
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # starship handles the prompt; fall back to refined if starship isn't installed
@@ -55,7 +67,7 @@ fi
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --info=inline'
 
 # =========================
-# Modular config (~/.zsh/)
+# Modular config (~/.zsh/) — AFTER oh-my-zsh so aliases override its defaults
 # =========================
 
 for file in env path alias proxy python git dev local; do
