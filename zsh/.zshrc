@@ -14,6 +14,12 @@ export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 # mosh runs under mosh-server; pure SSH does not
 # Type "loadrc" in SSH to force-load all config
 if [[ -n "$SSH_CONNECTION" && -z "$FORCE_LOAD_RC" ]] && ! pstree -s $$ 2>/dev/null | grep -q mosh-server; then
+  export ZSH="$HOME/.oh-my-zsh"
+  ZSH_THEME="refined"
+  plugins=(git)
+  source $ZSH/oh-my-zsh.sh
+  [ -f "$HOME/.zsh/python.zsh" ] && source "$HOME/.zsh/python.zsh"
+  [ -f "$HOME/.zsh/path.zsh" ] && source "$HOME/.zsh/path.zsh"
   alias loadrc='FORCE_LOAD_RC=1 exec zsh'
   return
 fi
