@@ -19,12 +19,11 @@ if command -v eza >/dev/null 2>&1; then
   alias lsr='eza -alh --git --sort=modified'
 fi
 
-# cat -> bat
+# bat as separate command, don't override cat
 if command -v batcat >/dev/null 2>&1; then
-  alias bat='batcat'
-  alias cat='batcat --paging=never --plain'
+  alias bat='batcat --paging=never --plain'
 elif command -v bat >/dev/null 2>&1; then
-  alias cat='bat --paging=never --plain'
+  alias bat='bat --paging=never --plain'
 fi
 
 # find -> fd
@@ -32,11 +31,11 @@ if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
   alias fd='fdfind'
 fi
 
-# du -> dust
-command -v dust >/dev/null 2>&1 && alias du='dust'
+# dust as separate command, don't override du
+command -v dust >/dev/null 2>&1 && alias ds='dust'
 
-# top -> btm
-command -v btm >/dev/null 2>&1 && alias top='btm --basic'
+# btm as separate command, don't override top
+command -v btm >/dev/null 2>&1 && alias btm='btm --basic'
 
 # ==============================
 # Containers & Kubernetes
