@@ -357,27 +357,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "open -a 'WeChat'"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_command",
-                                            "right_command",
-                                            "right_control",
-                                            "right_shift",
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a '企业微信'"
+                                        "shell_command": ""
                                     }
                                 ],
                                 "type": "basic"
