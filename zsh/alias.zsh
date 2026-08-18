@@ -112,8 +112,14 @@ command -v glow >/dev/null 2>&1 && alias md='glow'
 # ==============================
 
 alias ta='tmux a -t'
-alias tl='tmux ls'
 alias tn='tmux new -s'
+
+# tl: 列出所有 session，按"最后进入(attach)时间"倒序——刚进过的排最前
+# (默认 tmux ls 按名字母序，与最近使用无关)
+tl() {
+  tmux list-sessions -F '#{session_last_attached}|#{session_name}: #{session_windows} windows (created #{t:session_created})#{?session_grouped, (group #{session_group}),}#{?session_attached, (attached),}' \
+    | sort -rn | cut -d'|' -f2-
+}
 
 # ==============================
 # Misc (macOS-only)
