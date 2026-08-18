@@ -116,6 +116,8 @@ alias tn='tmux new -s'
 
 # tl: 列出所有 session，按"最后进入(attach)时间"倒序——刚进过的排最前
 # (默认 tmux ls 按名字母序，与最近使用无关)
+# unalias 兜底: 旧 shell 里可能残留 `alias tl`，不清掉会让 tl() 被 alias 展开而报错
+unalias tl 2>/dev/null
 tl() {
   tmux list-sessions -F '#{session_last_attached}|#{session_name}: #{session_windows} windows (created #{t:session_created})#{?session_grouped, (group #{session_group}),}#{?session_attached, (attached),}' \
     | sort -rn | cut -d'|' -f2-
