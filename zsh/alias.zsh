@@ -114,13 +114,16 @@ command -v glow >/dev/null 2>&1 && alias md='glow'
 alias ta='tmux a -t'
 alias tn='tmux new -s'
 
-# tl: 列出所有 session，按"最后进入(attach)时间"倒序——刚进过的排最前
-# (默认 tmux ls 按名字母序，与最近使用无关)
+# tl: 列出 session。默认按名称(a→z)；`tl t` 按最后进入(attach)时间倒序(刚进过的在前)
 # unalias 兜底: 旧 shell 里可能残留 `alias tl`，不清掉会让 tl() 被 alias 展开而报错
 unalias tl 2>/dev/null
 tl() {
-  tmux list-sessions -F '#{session_last_attached}|#{session_name}: #{session_windows} windows (created #{t:session_created})#{?session_grouped, (group #{session_group}),}#{?session_attached, (attached),}' \
-    | sort -rn | cut -d'|' -f2-
+  local fmt='#{session_name}: #{session_windows} windows (created #{t:session_created})#{?session_grouped, (group #{session_group}),}#{?session_attached, (attached),}'
+  if [[ "$1" == "t" || "$1" == "-t" ]]; then
+    tmux list-sessions -F "#{session_last_attached}|$fmt" | sort -rn | cut -d'|' -f2-
+  else
+    tmux list-sessions -F "$fmt" | sort
+  fi
 }
 
 # ==============================
