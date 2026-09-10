@@ -1,0 +1,6 @@
+blog 3a5fc7ae-aebf-4be5-9404-5bea8ed92adb /Users/Yam/Yam
+proj-mem 821d119b-8b0d-4a88-be02-8562839761e8 /Users/Yam/Yam
+res-bianfen 5cc8f9da-d71a-48ef-b55b-d5454ac5486c /Users/Yam/Yam
+res-fiberpo  /Users/Yam/Yam
+res-opd 4299f490-c512-4280-8d74-d2253f983599 /Users/Yam/Yam
+wechat-why10w 454ba437-3f93-48c3-818c-9560cda030aa /Users/Yam/Yam
