@@ -42,3 +42,6 @@
 [user]
 	name = hscspring
 	email = haoshaochun@gmail.com
+[safe]
+	directory = /mnt/sv0/sean/training
+	directory = /mnt/sv0/sean/data_pipeline

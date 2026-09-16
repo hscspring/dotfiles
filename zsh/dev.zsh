@@ -89,7 +89,7 @@ fi
 
 awsmfa() {
     local script
-    for d in "$HOME/dotfiles" "$HOME/.local/dotfiles" /mnt/local/sean/dotfiles; do
+    for d in "$HOME/dotfiles" "$HOME/.local/dotfiles"; do
         [ -x "$d/bin/aws-mfa" ] && script="$d/bin/aws-mfa" && break
     done
     if [ -z "${script:-}" ]; then

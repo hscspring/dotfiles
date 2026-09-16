@@ -43,32 +43,19 @@ export LIBTORCH=/usr/local/libtorch
 export LD_LIBRARY_PATH="${LIBTORCH}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
 # ==============================
-# Shared caches (/mnt/gv0/cache) — data/model downloads, machine-independent
+# Shared caches (/mnt/sv0/sean/cache) — data/model downloads, machine-independent
 # ==============================
 
-export HF_HOME="${HF_HOME:-/mnt/gv0/cache/huggingface}"
+export HF_HOME="${HF_HOME:-/mnt/sv0/sean/cache/huggingface}"
 export HF_HUB_CACHE="${HF_HUB_CACHE:-$HF_HOME/hub}"
 export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-$HF_HOME/datasets}"
 export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-$HF_HOME/transformers}"
 export HUGGINGFACE_ASSETS_CACHE="${HUGGINGFACE_ASSETS_CACHE:-$HF_HOME/assets}"
 export HF_XET_CACHE="${HF_XET_CACHE:-$HF_HOME/xet}"
-export TORCH_HOME="${TORCH_HOME:-/mnt/gv0/cache/torch}"
-export PIP_CACHE_DIR="${PIP_CACHE_DIR:-/mnt/gv0/cache/pip}"
-export NLTK_DATA="${NLTK_DATA:-/mnt/gv0/cache/nltk}"
-export GENSIM_DATA_DIR="${GENSIM_DATA_DIR:-/mnt/gv0/cache/gensim}"
-
-# ==============================
-# Local-only caches (/mnt/local/cache) — compiled/machine-specific
-# ==============================
-
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-/mnt/local/cache/xdg}"
-export TORCHINDUCTOR_CACHE_DIR="${TORCHINDUCTOR_CACHE_DIR:-/mnt/local/cache/torch/inductor}"
-export TRITON_CACHE_DIR="${TRITON_CACHE_DIR:-/mnt/local/cache/triton}"
-export CUDA_CACHE_PATH="${CUDA_CACHE_PATH:-/mnt/local/cache/cuda}"
-export NUMBA_CACHE_DIR="${NUMBA_CACHE_DIR:-/mnt/local/cache/numba}"
-export MPLCONFIGDIR="${MPLCONFIGDIR:-/mnt/local/cache/matplotlib}"
-export TFHUB_CACHE_DIR="${TFHUB_CACHE_DIR:-/mnt/local/cache/tfhub}"
-export JAX_CACHE_DIR="${JAX_CACHE_DIR:-/mnt/local/cache/jax}"
+export TORCH_HOME="${TORCH_HOME:-/mnt/sv0/sean/cache/torch}"
+export PIP_CACHE_DIR="${PIP_CACHE_DIR:-/mnt/sv0/sean/cache/pip}"
+export NLTK_DATA="${NLTK_DATA:-/mnt/sv0/sean/cache/nltk}"
+export GENSIM_DATA_DIR="${GENSIM_DATA_DIR:-/mnt/sv0/sean/cache/gensim}"
 
 # ==============================
 # Node / NVM
